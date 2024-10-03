@@ -18,6 +18,19 @@ mongoose.connect(process.env.MONGO_URI)
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://to-do-manager.lampe-kevin.com');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
+
+app.options('*', cors());
+
 app.use(cors({
   // origin: 'https://to-do-manager.lampe-kevin.com/',
   origin: 'to-do-manager.lampe-kevin.com/:1',
@@ -53,7 +66,7 @@ app.post('/users-register', async (req, res) => {
 
 });
 
-app.post('/users-login', async (req, res) => {
+app.post('/users-login', cors(), async (req, res) => {
   const { username, password } = req.body;
 
   const searchedUser = await User.findOne({ username });
@@ -88,7 +101,7 @@ app.post('/users-login', async (req, res) => {
     res.json({ message: 'User logged in!', searchedUser });
 });
 
-app.post('/token', async (req, res) => {
+app.post('/token', cors(), async (req, res) => {
 
   if (!req.cookies.token) res.send({
     message: 'No access token!'
