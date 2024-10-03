@@ -31,8 +31,6 @@ app.post('/users-register', async (req, res) => {
 
   const existsAlready = await User.findOne({ username });
 
-  console.log(existsAlready);
-
   if (existsAlready) { res.json({ message:
     'Username exists already!' }); return };
 
@@ -59,11 +57,7 @@ app.post('/users-login', async (req, res) => {
   !searchedUser && res.json({ message: 'User not found!'});
   if (!searchedUser) return;
 
-  console.log(searchedUser.hash);
-
   const bcryptCompare = await bcrypt.compare(password, searchedUser.hash);
-
-  console.log(bcryptCompare);
 
   if (!bcryptCompare) {
     res.json({ message: 'Passwort wrong!' });
@@ -74,8 +68,6 @@ app.post('/users-login', async (req, res) => {
       username,
       hash: searchedUser.hash
     };
-
-    console.log(cookieData);
 
     const token = jwt.sign(cookieData, process.env.JWT_SECRET, {
       expiresIn: '1h'
@@ -144,10 +136,6 @@ app.post('/logout', (req, res) => {
   res.json({ message: 'User successful logged out!' });
 });
 
-
-const PORT = 3001;
-
-app.listen(PORT, () => {
-  console.clear();
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
