@@ -32,8 +32,8 @@ app.use((req, res, next) => {
 app.options('*', cors());
 
 app.use(cors({
-  // origin: 'https://to-do-manager.lampe-kevin.com/',
-  origin: 'to-do-manager.lampe-kevin.com/:1',
+  origin: 'https://to-do-manager.lampe-kevin.com/',
+  // origin: 'to-do-manager.lampe-kevin.com/:1',
   // origin: 'http://localhost:5173',
   credentials: true
 }));
