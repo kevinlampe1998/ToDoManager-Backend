@@ -29,7 +29,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.options('*', cors());
+// app.options('*', cors());
 
 app.use(cors({
   origin: 'https://to-do-manager.lampe-kevin.com',
