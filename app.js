@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI)
 const app = express();
 
 app.use(cors({
-  origin: 'https://to-do-manager.lampe-kevin.com',
+  origin: 'https://to-do-manager.lampe-kevin.com/',
   // origin: 'http://localhost:5173',
   credentials: true
 }));
