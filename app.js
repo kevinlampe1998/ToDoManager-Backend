@@ -20,6 +20,7 @@ const app = express();
 
 app.use(cors({
   origin: 'https://to-do-manager.lampe-kevin.com',
+  // origin: 'http://localhost:5173',
   credentials: true
 }));
 app.use(express.json());
@@ -62,7 +63,7 @@ app.post('/users-login', async (req, res) => {
   const bcryptCompare = await bcrypt.compare(password, searchedUser.hash);
 
   if (!bcryptCompare) {
-    res.json({ message: 'Passwort wrong!' });
+    res.json({ message: 'Password wrong!' });
     return;
   };
 
@@ -78,7 +79,8 @@ app.post('/users-login', async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: 3_600_000,
-      secure: true
+      secure: true,
+      sameSite: 'None'
     });
 
     res.json({ message: 'User logged in!', searchedUser });
