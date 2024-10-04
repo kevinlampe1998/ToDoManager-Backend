@@ -18,6 +18,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 const app = express();
 
+app.set('trust proxy', true);
+
 app.use(cors({
   origin: 'https://to-do-manager.lampe-kevin.com',
   // origin: 'http://localhost:5173',
@@ -85,7 +87,7 @@ app.post('/users-login', async (req, res) => {
       // maxAge: 3_600_000,
       secure: true,
       // secure: false,
-      sameSite: 'none'
+      sameSite: 'None'
     });
 
     res.json({ message: 'User logged in!', searchedUser });
