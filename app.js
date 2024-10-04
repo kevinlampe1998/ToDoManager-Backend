@@ -88,6 +88,8 @@ app.post('/users-login', async (req, res) => {
       // secure: true,
       // secure: false,
       // sameSite: 'None'
+      domain: 'to-do-manager.lampe-kevin.com',
+      path: '/'
     });
 
     res.json({ message: 'User logged in!', searchedUser });
