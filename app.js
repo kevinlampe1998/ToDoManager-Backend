@@ -77,7 +77,7 @@ app.post('/users-login', async (req, res) => {
     console.log('cookieData', cookieData);
 
     const token = jwt.sign(cookieData, process.env.JWT_SECRET, {
-      // expiresIn: '1h'
+      expiresIn: '1h'
     });
 
     console.log('jwt-token', token);
@@ -85,7 +85,7 @@ app.post('/users-login', async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: 3_600_000,
-      secure: true,
+      // secure: true,
       // secure: false,
       // sameSite: 'None'
     });
