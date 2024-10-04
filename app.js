@@ -72,13 +72,17 @@ app.post('/users-login', async (req, res) => {
       hash: searchedUser.hash
     };
 
+    console.log('cookieData', cookieData);
+
     const token = jwt.sign(cookieData, process.env.JWT_SECRET, {
-      expiresIn: '1h'
+      // expiresIn: '1h'
     });
 
+    console.log('jwt-token', token);
+
     res.cookie('token', token, {
-      httpOnly: true,
-      maxAge: 3_600_000,
+      // httpOnly: true,
+      // maxAge: 3_600_000,
       // secure: true,
       // secure: false,
       // sameSite: 'None'
@@ -88,6 +92,8 @@ app.post('/users-login', async (req, res) => {
 });
 
 app.post('/token', async (req, res) => {
+
+  console.log('req.cookies', req.cookies);
 
   if (!req.cookies.token) res.send({
     message: 'No access token!'
