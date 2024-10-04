@@ -94,6 +94,7 @@ app.post('/users-login', async (req, res) => {
 app.post('/token', async (req, res) => {
 
   console.log('req.cookies', req.cookies);
+  console.log('req.cookies.token', req.cookies.token);
 
   if (!req.cookies.token) res.send({
     message: 'No access token!'
