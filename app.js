@@ -18,10 +18,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 const app = express();
 
-app.set('trust proxy', true);
+// app.set('trust proxy', true);
 
 app.use(cors({
-  origin: 'https://to-do-manager.lampe-kevin.com',
+  origin: ['https://to-do-manager.lampe-kevin.com', 'http://localhost:5173'],
   // origin: 'http://localhost:5173',
   credentials: true
 }));
@@ -83,8 +83,8 @@ app.post('/users-login', async (req, res) => {
     console.log('jwt-token', token);
 
     res.cookie('token', token, {
-      // httpOnly: true,
-      // maxAge: 3_600_000,
+      httpOnly: true,
+      maxAge: 3_600_000,
       secure: true,
       // secure: false,
       sameSite: 'None'
