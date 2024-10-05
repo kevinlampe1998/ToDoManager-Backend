@@ -81,7 +81,7 @@ app.post('/users-login', async (req, res) => {
       httpOnly: true,
       maxAge: 3_600_000,
       secure: true,
-      sameSite: 'None',
+      sameSite: 'Strict',
       // domain: 'to-do-manager.lampe-kevin.com',
       path: '/'
     });
