@@ -81,12 +81,12 @@ app.post('/users-login', async (req, res) => {
       httpOnly: true,
       maxAge: 3_600_000,
       secure: true,
-      sameSite: 'strict',
-      domain: 'to-do-manager.lampe-kevin.com',
+      sameSite: 'None',
+      // domain: 'to-do-manager.lampe-kevin.com',
       path: '/'
     });
 
-    res.header("Set-Cookie", "token=" + token + ";Path=/;HttpOnly;Secure;SameSite=None;Expires=31556926");
+    // res.header("Set-Cookie", "token=" + token + ";Path=/;HttpOnly;Secure;SameSite=None;Expires=31556926");
 
     res.json({ message: 'User logged in!', searchedUser });
 });
