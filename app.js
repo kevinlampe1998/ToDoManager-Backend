@@ -12,6 +12,8 @@ import ToDo from './models/todo.js';
 
 dotenv.config();
 
+// new line to available git push
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('DB connected!'))
   .catch((err) => console.log('Error connecting DB: ', err));
