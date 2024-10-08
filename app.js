@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI)
 const app = express();
 
 app.use(cors({
-  origin: ['https://to-do-manager.lampe-kevin.com', 'http://localhost:5173'],
+  origin: 'https://to-do-manager.lampe-kevin.com',
   credentials: true
 }));
 app.use(express.json());
@@ -81,7 +81,7 @@ app.post('/users-login', async (req, res) => {
       httpOnly: true,
       maxAge: 3_600_000,
       secure: true,
-      sameSite: 'Strict',
+      sameSite: 'None',
       // domain: 'to-do-manager.lampe-kevin.com',
       path: '/'
     });
